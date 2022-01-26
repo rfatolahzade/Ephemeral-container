@@ -8,7 +8,8 @@ RUN apt install -y \
     net-tools \
     curl \
     telnet \
-	wget 
+    wget \
+    postgresql-client 
 	
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt clean
