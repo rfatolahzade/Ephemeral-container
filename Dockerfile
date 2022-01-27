@@ -10,7 +10,7 @@ RUN apt install -y \
     telnet \
     wget \
     postgresql-client \
-    iptuils-ping
+    iputils-ping
 	
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt clean
