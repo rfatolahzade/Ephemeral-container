@@ -1,19 +1,5 @@
-FROM ubuntu
+FROM alpine
 
-RUN apt update 
-
-RUN apt install -y \
-    traceroute \
-    netcat \
-    net-tools \
-    curl \
-    telnet \
-    wget \
-    postgresql-client \
-    iputils-ping
-	
-RUN rm -rf /var/lib/apt/lists/*
-RUN apt clean
-
-
-CMD [ "sleep", "1d" ]
+RUN apk update \
+    && apk upgrade \
+    && apk --no-cache add --update curl htop postgresql-client iputils busybox-extras 
