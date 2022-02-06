@@ -1,0 +1,5 @@
+FROM alpine
+
+RUN apk update \
+    && apk upgrade \
+    && apk --no-cache add --update curl htop wget postgresql-client net-tools iputils busybox-extras 
