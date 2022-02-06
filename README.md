@@ -81,8 +81,8 @@ spec:
         command: ["/bin/sh"]
         args: ["-c", "YOURCOMMAND"]
 ```
-
-
+#### Documentation
+   [Creating Ephemeral Containers using kubectl](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#ephemeral-container)
 Have fun.
 
 
