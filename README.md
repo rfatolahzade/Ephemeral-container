@@ -84,6 +84,45 @@ spec:
 #### Debug Running Pods
    [Creating Ephemeral Containers using kubectl](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#ephemeral-container)
    
+   
+### Some useful tools/commands:
+#### Helm:
+#### helm lint:
+
+helm lint is your go-to tool for verifying that your chart follows best practices
+```bash
+helm lint .  -f values.yaml
+```
+#### helm template:
+Useful to pre-install:
+```bash
+helm template . -f values.sample.yaml > template.yaml
+```
+#### helm --dry-run:
+helm install --dry-run --debug or helm template --debug: We've seen this trick already. It's a great way to have the server render your templates, then return the resulting manifest file.
+
+#### helm get manifest:
+helm get manifest: This is a good way to see what templates are installed on the server.
+When your YAML is failing to parse, but you want to see what is generated, one easy way to retrieve the YAML is to comment out the problem section in the template, and then re-run helm install --dry-run --debug:
+
+#### kubernetes:
+#### kubeval:
+```bash
+brew install kubeval
+```
+And:
+```bash
+kubeval template.yaml  --ignore-missing-schemas
+```
+#### kube-score:
+```bash
+brew install kube-score
+```
+And:
+```bash
+kube-score score template.yaml
+```
+
 Have fun.
 
 
