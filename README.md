@@ -130,6 +130,29 @@ And:
 ```bash
 kubeval template.yaml  --ignore-missing-schemas
 ```
+If your yaml file contains some workloads your output will be like:
+```bash
+WARN - Set to ignore missing schemas
+PASS - parse/charts/postgresql/templates/pgsecret.yaml contains a valid Secret (secret-postgresql)
+PASS - parse/templates/secret.yaml contains a valid Secret (secret-parse)
+PASS - parse/templates/configmap.yaml contains a valid ConfigMap (default.parse)
+PASS - parse/charts/postgresql/templates/pg-pv.yaml contains a valid PersistentVolume (pv-hostpath)
+PASS - parse/charts/postgresql/templates/pg-pvc.yaml contains a valid PersistentVolumeClaim (pvc-hostpath)
+PASS - parse/charts/postgresql/templates/pg-service.yaml contains a valid Service (postgresql)
+PASS - parse/templates/dashboard-service.yaml contains a valid Service (dashboard)
+PASS - parse/templates/server-service.yaml contains a valid Service (server)
+PASS - parse/charts/postgresql/templates/pg-deployment.yaml contains a valid Deployment (postgresql)
+PASS - parse/templates/dashboard-deployment.yaml contains a valid Deployment (dashboard)
+PASS - parse/templates/server-deployment.yaml contains a valid Deployment (server)
+WARN - parse/templates/ingress.yaml containing a Ingress (parse-ingress) was not validated against a schema
+WARN - parse/templates/certificate.yaml containing a Certificate (default.parse.rayvarz.link) was not validated against a schema
+WARN - parse/templates/clusterIssuer-letsencrypt.yaml containing a ClusterIssuer (default.letsencrypt-prod) was not validated against a schema
+```
+You must pass at least one file as an argument, or at least one directory to the directories flag:
+```bash
+kubeval -d .
+```
+
 #### kube-score:
 ```bash
 brew install kube-score
