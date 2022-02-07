@@ -96,10 +96,21 @@ helm lint .  -f values.yaml
 #### helm template:
 Useful to pre-install:
 ```bash
-helm template . -f values.sample.yaml > template.yaml
+helm template . > template.yaml 
+#OR
+helm template . --debug 
 ```
 #### helm --dry-run:
 helm install --dry-run --debug or helm template --debug: We've seen this trick already. It's a great way to have the server render your templates, then return the resulting manifest file.
+The output same as "helm template . > template.yaml" or "helm template . --debug"
+```bash
+helm install parse . --dry-run
+```
+If you run:
+```bash
+helm install parse . --dry-run --debug
+```
+Your "USER-SUPPLIED VALUES:" will be in the output too.
 
 #### helm get manifest:
 helm get manifest: This is a good way to see what templates are installed on the server.
