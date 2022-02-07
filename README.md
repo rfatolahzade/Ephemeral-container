@@ -161,6 +161,13 @@ And:
 ```bash
 kube-score score template.yaml
 ```
+Your output (except [CRITICAL] issues):
+```bash
+networking.k8s.io/v1/Ingress parse-ingress                                    ✅
+v1/Service dashboard                                                          ✅
+v1/Service postgresql                                                         ✅
+v1/Service server                                                             ✅
+```
 
 Have fun.
 
