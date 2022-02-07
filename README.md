@@ -85,7 +85,7 @@ spec:
    [Creating Ephemeral Containers using kubectl](https://kubernetes.io/docs/tasks/debug-application-cluster/debug-running-pod/#ephemeral-container)
    
    
-### Some useful tools/commands:
+## Some useful tools/commands
 #### Helm:
 #### helm lint:
 
