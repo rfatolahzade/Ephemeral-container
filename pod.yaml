@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: troubleshooter
+  namespace: default
+spec:
+  containers:
+  - name: ephemeral-container
+    image: ghcr.io/rfinland/ephemeral-container:master
+    command:
+      - sleep
+      - "3600"
+    imagePullPolicy: IfNotPresent
+  restartPolicy: Always

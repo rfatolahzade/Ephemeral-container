@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app.kubernetes.io/name: nginx
+spec:
+  containers: 
+    - name: web
+      image: nginx
+      ports:
+       - name: web
+         containerPort: 80
+         protocol: TCP
+  initContainers:
+      - name: my-init-containers
+        image: ghcr.io/rfinland/ephemeral-container:master
+        command: ["/bin/sh"]
+        args: ["-c", "echo 'Hello From initContainers' "]

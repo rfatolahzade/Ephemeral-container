@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: troubleshooter
+  labels:
+    app: troubleshooter
+spec:
+  containers:
+    - name: ephemeral-container
+      image: ghcr.io/rfatolahzade/ephemeral-container:latest
+      imagePullPolicy: IfNotPresent
+      command: ["sleep"]
+      args: ["3600"]
+      stdin: true
+      tty: true
+  imagePullSecrets:
+    - name: regcred
+  restartPolicy: Always
