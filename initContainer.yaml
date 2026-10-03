@@ -1,3 +1,4 @@
+# initContainer.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -9,11 +10,11 @@ spec:
     - name: web
       image: nginx
       ports:
-       - name: web
-         containerPort: 80
-         protocol: TCP
+        - name: web
+          containerPort: 80
+          protocol: TCP
   initContainers:
-      - name: my-init-containers
-        image: ghcr.io/rfinland/ephemeral-container:master
-        command: ["/bin/sh"]
-        args: ["-c", "echo 'Hello From initContainers' "]
+    - name: my-init-containers
+      image: rfinland/ephemeral-container:latest
+      command: ["/bin/sh"]
+      args: ["-c", "echo 'Hello From initContainers'"]
