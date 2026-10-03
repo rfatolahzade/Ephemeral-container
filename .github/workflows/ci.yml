@@ -2,10 +2,10 @@ name: Docker Build and Push
 
 on:
   push:
-    branches: [ 'master', 'main', 'beta' ]
+    branches: [ 'main', 'beta' ]
     tags: [ '*' ] # Triggers on ANY git tag (e.g., v1.0.0, test-build, release-candidate)
   pull_request:
-    branches: [ 'master', 'main' ]
+    branches: [ 'main' ]
   workflow_dispatch: # Allows manual triggering from the GitHub Actions UI
     inputs:
       custom_tag:
@@ -65,16 +65,14 @@ jobs:
         with:
           images: ${{ steps.regs.outputs.images }}
           tags: |
-            # Branch names (e.g., beta)
-            type=ref,event=branch
             # Git tags (e.g., v1.0.0, my-custom-tag)
             type=ref,event=tag
             # Semantic versioning cleanup (v1.0.0 -> 1.0.0 and 1.0)
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-            # Latest tag (only for master/main)
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
-            # Beta tag (only for beta branch)
+            # Latest tag (ONLY for main branch, prevents :main tag)
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            # Beta tag (ONLY for beta branch)
             type=raw,value=beta,enable=${{ github.ref == 'refs/heads/beta' }}
             # Manual dispatch custom tag
             type=raw,value=${{ inputs.custom_tag }},enable=${{ github.event_name == 'workflow_dispatch' && inputs.custom_tag != '' }}
